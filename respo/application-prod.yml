@@ -1,0 +1,36 @@
+redis:
+    host: 192.168.13.116
+    port: 6379
+    password: Dyiaw2017
+    database: 2
+    jedis:
+      pool:
+        max-idle: 300
+        max-wait: -1ms
+        max-active: 50
+    timeout: 90000ms
+  datasource:
+    name: dyiaw_one_api_dev
+    type: com.alibaba.druid.pool.DruidDataSource
+    driver-class-name: com.mysql.jdbc.Driver
+    druid:
+      url: jdbc:mysql://192.168.13.116:3306/dyiaw_one_api_dev?useUnicode=true&characterEncoding=utf8
+      username: root
+      password: aA123456
+      initial-size: 1 # 初始化时建立物理连接的个数
+      min-idle: 1 # 最小连接池数量
+      max-active: 100 # 最大连接池数量
+      max-wait: 150000 # 获取连接时最大等待时间，单位毫秒
+      time-between-eviction-runs-millis: 100000 # 有两个含义： 1) Destroy线程会检测连接的间隔时间 2) testWhileIdle的判断依据
+      min-evictable-idle-time-millis: 100000  #
+      validation-query: SELECT 'x' # 用来检测连接是否有效的sql，要求是一个查询语句。
+      test-while-idle: true
+      test-on-borrow: false
+      test-on-return: false
+      pool-prepared-statements: false # 是否缓存preparedStatement，也就是PSCache
+      max-pool-prepared-statement-per-connection-size: 50
+
+#Mybatis
+mybatis:
+  mapper-locations: classpath:mapping/*.xml
+  type-aliases-package: com.captain.serviceonemaster.entity
